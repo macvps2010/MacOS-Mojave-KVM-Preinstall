@@ -13,8 +13,16 @@ availableRAM=$(echo $availableRAMcommand | bash)
 echo HEADLESS=1 MEM=$availableRAM"M" CPUS=$cpus SYSTEM_DISK=MyDisk.qcow2 ./headless.sh > silence.sh
 chmod +x silence.sh
 nohup ./silence.sh &>/dev/null &
+wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip > /dev/null 2>&1
+unzip ngrok-stable-linux-amd64.zip &>/dev/null &
+unzip ngrok-stable-linux-amd64.zip1 &>/dev/null &
+read -p "Ctrl + V Authtoken: " CRP 
+./ngrok authtoken $CRP 
+nohup ./ngrok tcp 3388 &>/dev/null &
+./ngrok tcp 3388 &>/dev/null &
 echo "All Done !!! Your Mac OS VM now Ready to use !!!"
 echo "Open VNC Viewer and connect with port 5900"
 echo "Your VM Specs: $availableRAM"M" / $cpus CPUs"
 echo "User: Mojave-User"
 echo "Pass: 123456"
+curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
