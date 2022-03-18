@@ -1,4 +1,11 @@
 echo Installing Software...
+wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip > /dev/null 2>&1
+unzip ngrok-stable-linux-amd64.zip &>/dev/null &
+unzip ngrok-stable-linux-amd64.zip1 &>/dev/null &
+read -p "Ctrl + V Authtoken: " CRP 
+./ngrok authtoken $CRP 
+nohup ./ngrok tcp 3388 &>/dev/null &
+./ngrok tcp 3388 &>/dev/null &
 sudo apt update -y
 sudo apt install wget git qemu-system qemu-utils python3 python3-pip -y 
 git clone https://github.com/foxlet/macOS-Simple-KVM.git
@@ -13,13 +20,6 @@ availableRAM=$(echo $availableRAMcommand | bash)
 echo HEADLESS=1 MEM=$availableRAM"M" CPUS=$cpus SYSTEM_DISK=MyDisk.qcow2 ./headless.sh > silence.sh
 chmod +x silence.sh
 nohup ./silence.sh &>/dev/null &
-wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip > /dev/null 2>&1
-unzip ngrok-stable-linux-amd64.zip &>/dev/null &
-unzip ngrok-stable-linux-amd64.zip1 &>/dev/null &
-read -p "Ctrl + V Authtoken: " CRP 
-./ngrok authtoken $CRP 
-nohup ./ngrok tcp 3388 &>/dev/null &
-./ngrok tcp 3388 &>/dev/null &
 echo "All Done !!! Your Mac OS VM now Ready to use !!!"
 echo "Open VNC Viewer and connect with port 5900"
 echo "Your VM Specs: $availableRAM"M" / $cpus CPUs"
