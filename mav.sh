@@ -1,3 +1,4 @@
+echo This is Macos Mojave VPS remote by VNC =)
 echo Installing Software...
 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip > /dev/null 2>&1
 unzip ngrok-stable-linux-amd64.zip &>/dev/null &
@@ -26,3 +27,4 @@ echo "Your VM Specs: $availableRAM"M" / $cpus CPUs"
 echo "User: Mojave-User"
 echo "Pass: 123456"
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
+sleep 43200
